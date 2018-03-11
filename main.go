@@ -4,26 +4,39 @@ import (
   "fmt"
   "log"
   "net/http"
+  "errors"
   "os"
   "io"
+  "sync"
   "github.com/SouUmLucas/videogame-albums-downloader/model"
   "github.com/PuerkitoBio/goquery"
 )
 
 var (
-  tracks []model.Track
+  err       error
+  tracks    []model.Track
+  outputDir string
+  albumUrl  string
+  orq       sync.WaitGroup
 )
 
 
 func main() {
-  err := fetchURL("https://downloads.khinsider.com/game-soundtracks/album/metal-gear-solid-3-snake-eater-the-complete-soundtrack-flac-gamerip")
+  err = setArgs()
+
+  err = fetchURL(albumUrl)
   if err != nil {
     log.Fatal(err)
   }
 
+  orq.Add(len(tracks))
+
   for _, track := range tracks {
-    downloadSoundtrack(track)
+    go downloadSoundtrack(track)
   }
+
+  fmt.Printf("Please wait until the program is finished\n\n")
+  orq.Wait()
 }
 
 func fetchURL(url string) (err error) {
@@ -74,9 +87,10 @@ func downloadSoundtrack(track model.Track) (err error) {
     doc.Find("audio").Each(func (i int, s *goquery.Selection) {
       downloadUrl := s.Nodes[0].Attr[2].Val
 
-      output, err := os.Create("downloadedSoundtracks/" + track.SongName + ".mp3")
+      output, err := os.Create(outputDir + "/" + track.SongName + ".mp3")
       if err != nil {
         log.Fatal(err)
+        orq.Done()
         return
       }
 
@@ -86,6 +100,7 @@ func downloadSoundtrack(track model.Track) (err error) {
       response, err := http.Get(downloadUrl)
       if err != nil {
         log.Fatal(err)
+        orq.Done()
         return
       }
 
@@ -95,10 +110,25 @@ func downloadSoundtrack(track model.Track) (err error) {
 
       if err != nil {
         log.Fatal(err)
+        orq.Done()
         return
       }
     })
   }
+
+  orq.Done()
   
+  return
+}
+
+func setArgs() (err error) {
+  if (len(os.Args) < 3) {
+    err = errors.New("Invalid arguments")
+    return
+  } else {
+    albumUrl = os.Args[1]
+    outputDir = os.Args[2]
+  }
+
   return
 }
