@@ -23,6 +23,9 @@ var (
 
 func main() {
   err = setArgs()
+  if err != nil {
+    log.Fatal(err)
+  }
 
   err = fetchURL(albumUrl)
   if err != nil {
@@ -123,7 +126,7 @@ func downloadSoundtrack(track model.Track) (err error) {
 
 func setArgs() (err error) {
   if (len(os.Args) < 3) {
-    err = errors.New("Invalid arguments")
+    err = errors.New("Invalid arguments: you must specify the URL of the album and the output directory")
     return
   } else {
     albumUrl = os.Args[1]
