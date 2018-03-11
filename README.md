@@ -8,7 +8,9 @@ Entretanto, existe um site que acredito que seja o melhor lugar onde eu possa en
 É nesse contexto que criei essa ferramenta em Go! Passando o link do album no site, esse programa usa técnicas de [web scraping](https://en.wikipedia.org/wiki/Web_scraping) para baixar todas as músicas do album, poupando assim o tempo do ouvinte.
 
 ### Executando
-Antes é necessário compilar o projeto
+Você pode obter a última versão [aqui](https://drive.google.com/file/d/1JbgfIB1oEYP2azdiOsvbU-2wGAH04J7o/view?usp=sharing)
+
+Mas se preferir, você pode compilar o projeto.
 ```
 $ GOOS=<os> GOARCH=<arch> go build -o videogame-soundtrack-downloader
 ```
