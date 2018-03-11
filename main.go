@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
   "log"
-	"net/http"
-	"os"
-	"io"
+  "net/http"
+  "os"
+  "io"
   "github.com/SouUmLucas/videogame-albums-downloader/model"
-	"github.com/PuerkitoBio/goquery"
+  "github.com/PuerkitoBio/goquery"
 )
 
 var (
@@ -16,7 +16,7 @@ var (
 
 
 func main() {
-	err := fetchURL("https://downloads.khinsider.com/game-soundtracks/album/metal-gear-solid-3-snake-eater-the-complete-soundtrack-flac-gamerip")
+  err := fetchURL("https://downloads.khinsider.com/game-soundtracks/album/metal-gear-solid-3-snake-eater-the-complete-soundtrack-flac-gamerip")
   if err != nil {
     log.Fatal(err)
   }
