@@ -18,5 +18,10 @@ $ GOOS=<os> GOARCH=<arch> go build -o videogame-soundtrack-downloader
 Para executar, basta ir a linha de comando e executar o programa compilado, fornecendo os argumentos de URL do album e diretório de saída, como exemplificado:
 
 ```
-$ videogame-soundtrack-downloader.exe https://downloads.khinsider.com/game-soundtracks/album/ace-combat-5-the-unsung-war-original-soundtrack C:\Users\lucas\Music\Ace Combat 5
+$ videogame-soundtrack-downloader.exe https://www.example-url-music.com C:\example\output\path\
+```
+
+Demo:
+```
+$ videogame-soundtrack-downloader.exe https://downloads.khinsider.com/game-soundtracks/album/ace-combat-5-the-unsung-war-original-soundtrack C:\Users\lucas\Music\Ace Combat 5\
 ```
