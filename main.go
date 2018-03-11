@@ -90,7 +90,7 @@ func downloadSoundtrack(track model.Track) (err error) {
     doc.Find("audio").Each(func (i int, s *goquery.Selection) {
       downloadUrl := s.Nodes[0].Attr[2].Val
 
-      output, err := os.Create(outputDir + "/" + track.SongName + ".mp3")
+      output, err := os.Create(outputDir + track.SongName + ".mp3")
       if err != nil {
         log.Fatal(err)
         orq.Done()
