@@ -5,4 +5,4 @@ Uma das coisas que eu mais gosto de fazer no meu tempo livre é ouvir as música
 
 Entretanto, existe um site que acredito que seja o melhor lugar onde eu posso encontrar minhas músicas favoritas: o [Video Game Music](https://downloads.khinsider.com). Seu único problema é não permitir que seja baixado um album de uma vez, só sendo possível baixar uma música por vez. Isso na maioria das vezes se torna impraticável, além de ser perda de tempo.
 
-É para isso que criei essa ferramenta em Go! Passando o link do album no site, esse programa usa técnicas de [web scrapping](https://en.wikipedia.org/wiki/Web_scraping) para baixar todas as músicas do album, poupando assim o tempo do ouvinte. 
+É para isso que criei essa ferramenta em Go! Passando o link do album no site, esse programa usa técnicas de [web scraping](https://en.wikipedia.org/wiki/Web_scraping) para baixar todas as músicas do album, poupando assim o tempo do ouvinte. 
